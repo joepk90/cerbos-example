@@ -1,0 +1,9 @@
+apiVersion: api.cerbos.dev/v1
+derivedRoles:
+  name: post_roles
+  definitions:
+    - name: owner
+      parentRoles: ["user"]
+      condition:
+        match:
+          expr: request.resource.attr.authorId == request.principal.id
