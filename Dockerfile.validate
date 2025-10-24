@@ -1,0 +1,18 @@
+FROM ubuntu:22.04
+
+# Install curl (or wget) to fetch Cerbos
+RUN apt-get update && apt-get install -y curl
+
+# Download Cerbos binary
+RUN curl -L https://github.com/cerbos/cerbos/releases/latest/download/cerbos-linux-amd64 -o /usr/local/bin/cerbos \
+    && chmod +x /usr/local/bin/cerbos
+
+# Copy config and policies
+COPY config/cerbos.yaml /etc/cerbos/cerbos.yaml
+COPY policies /policies
+
+# Validate policies at build time
+RUN cerbos compile --config /etc/cerbos/cerbos.yaml --policy-dir /policies
+
+# Production entrypoint
+CMD ["cerbos", "server", "--config=/etc/cerbos/cerbos.yaml"]
