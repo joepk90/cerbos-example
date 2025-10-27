@@ -1,0 +1,14 @@
+FROM ubuntu:22.04
+
+RUN apt-get update && apt-get install -y curl tar ca-certificates && rm -rf /var/lib/apt/lists/*
+
+ARG CERBOS_VERSION=0.46.0
+
+# Download and extract Cerbos binary
+RUN curl -L "https://github.com/cerbos/cerbos/releases/download/v${CERBOS_VERSION}/cerbos_${CERBOS_VERSION}_Linux_arm64.tar.gz" \
+    -o /tmp/cerbos.tar.gz \
+    && tar -xzf /tmp/cerbos.tar.gz -C /usr/local/bin cerbos \
+    && chmod +x /usr/local/bin/cerbos \
+    && rm /tmp/cerbos.tar.gz
+
+CMD ["cerbos", "compile", "--skip-tests", "/policies"]
