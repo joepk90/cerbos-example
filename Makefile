@@ -10,7 +10,7 @@ docker-run:
 	docker run -it -p 3592:3592 ${SERVICE_IMAGE}
 
 validate:
-	docker run -i -t -v $$(pwd)/config:/etc/cerbos -v $$(pwd)/policies:/policies ghcr.io/cerbos/cerbos:0.46.0 compile --skip-tests /policies
+	docker run -i -t -v ./config:/etc/cerbos -v ./policies:/policies ghcr.io/cerbos/cerbos:0.46.0 compile --skip-tests /policies
 
 
 # alternative approach for validation using docker image
@@ -21,4 +21,4 @@ docker-validate-build:
 	docker build -t ${CERBOS_VALIDATION_IMAGE_NAME} -f Dockerfile.validate .
 
 docker-validate-run:
-	docker run -it -v $$(pwd)/config:/etc/cerbos -v $$(pwd)/policies:/policies ${CERBOS_VALIDATION_IMAGE_NAME}
+	docker run -it -v ./config:/etc/cerbos -v ./policies:/policies ${CERBOS_VALIDATION_IMAGE_NAME}
