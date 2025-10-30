@@ -1,5 +1,5 @@
 server:
-  httpListenAddr: ":3592"
+  httpListenAddr: ":8080"
 
 storage:
   driver: disk
