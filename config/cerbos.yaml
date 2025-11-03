@@ -1,4 +1,5 @@
 server:
+  # 8080 required for gcp (alternatively include proxy server in Dockerfile and manage port configuration)
   httpListenAddr: ":8080"
 
 storage:
