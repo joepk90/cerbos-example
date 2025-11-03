@@ -18,9 +18,13 @@ resourcePolicy:
         - owner
         - moderator
         - admin
+      derivedRoles:
+        - owner
 
     - actions: ["delete"]
       effect: EFFECT_ALLOW
       roles:
         - moderator
         - admin
+      derivedRoles:
+        - owner

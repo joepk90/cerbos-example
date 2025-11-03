@@ -1,0 +1,11 @@
+apiVersion: api.cerbos.dev/v1
+description: |-
+  Condition based roles based on the principle id and the recources owner id. The derived role must be added to the resource.
+derivedRoles:
+  name: post_roles
+  definitions:
+    - name: owner
+      parentRoles: ["user"]
+      condition:
+        match:
+          expr: request.resource.attr.ownerId == request.principal.id
