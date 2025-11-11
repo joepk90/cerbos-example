@@ -9,22 +9,32 @@ resourcePolicy:
       effect: EFFECT_ALLOW
       roles:
         - user
-        - moderator
+        - agent
+        - manager
         - admin
-
-    - actions: ["update", "edit"]
+        - owner
+    
+    - actions: ["read"]
       effect: EFFECT_ALLOW
       roles:
-        - owner
-        - moderator
+        - user
+        - agent
+        - manager
         - admin
+        - owner
+
+    - actions: ["update"]
+      effect: EFFECT_ALLOW
+      roles:
+        - manager
+        - admin
+        - owder
       derivedRoles:
         - owner
 
     - actions: ["delete"]
       effect: EFFECT_ALLOW
       roles:
-        - moderator
-        - admin
+        - owner
       derivedRoles:
         - owner
